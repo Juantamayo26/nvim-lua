@@ -40,7 +40,6 @@ O = {
         matchup = {active = false},
         colorizer = {active = false},
         numb = {active = false},
-        zen = {active = false},
         ts_playground = {active = false},
         indent_line = {active = false},
         ts_context_commentstring = {active = false},

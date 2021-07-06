@@ -283,11 +283,11 @@ if O.plugin.ts_playground.active then
     mappings[""] = "Highlight Capture"
 end
 
-if O.plugin.zen.active then
-    vim.api.nvim_set_keymap("n", "<leader>z", ":ZenMode<CR>",
-                            {noremap = true, silent = true})
-    mappings["z"] = "Zen"
-end
+-- if O.plugin.zen.active then
+--     vim.api.nvim_set_keymap("n", "<leader>z", ":ZenMode<CR>",
+--                             {noremap = true, silent = true})
+--     mappings["z"] = "Zen"
+-- end
 if O.plugin.lazygit.active then
     vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>",
                             {noremap = true, silent = true})

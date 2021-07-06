@@ -230,13 +230,6 @@ return require("packer").startup(function(use)
         end,
         disable = not O.plugin.lsp_rooter.active
     }
-    -- Markdown preview
-    use {
-        'iamcco/markdown-preview.nvim',
-        run = 'cd app && npm install',
-        ft = 'markdown',
-        disable = not O.plugin.markdown_preview.active
-    }
     -- Interactive scratchpad
     use {
         'metakirby5/codi.vim',
@@ -325,16 +318,20 @@ return require("packer").startup(function(use)
         event = "BufRead",
         disable = not O.plugin.dap_install.active
     }
+    -- competitive programming
+    use{
+      'searleser97/cpbooster.vim'
+    }
 
     -- LANGUAGE SPECIFIC GOES HERE
 
-    -- Latex TODO what filetypes should this be active for?
-    use {"lervag/vimtex", ft = "latex"}
-
-    -- Rust tools
-    -- TODO: use lazy loading maybe?
-    use {"simrat39/rust-tools.nvim", ft = "rust"}
-
-    -- Elixir
-    use {"elixir-editors/vim-elixir", ft = {"elixir", "eelixir", "euphoria3"}}
+--    -- Latex TODO what filetypes should this be active for?
+--    use {"lervag/vimtex", ft = "latex"}
+--
+--    -- Rust tools
+--    -- TODO: use lazy loading maybe?
+--    use {"simrat39/rust-tools.nvim", ft = "rust"}
+--
+--    -- Elixir
+--    use {"elixir-editors/vim-elixir", ft = {"elixir", "eelixir", "euphoria3"}}
 end)

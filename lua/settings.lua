@@ -14,8 +14,8 @@ cmd('set inccommand=split')             -- show what you are substituting in rea
 cmd('set iskeyword+=-')                 -- treat dash as a separate word
 cmd('set whichwrap+=<,>,[,],h,l')       -- move to next line with theses keys
 if O.transparent_window then
-    cmd('au ColorScheme * hi Normal ctermbg=none guibg=none')
- end
+  cmd('au ColorScheme * hi Normal ctermbg=none guibg=none')
+end
 
 ---  SETTINGS  ---
 
