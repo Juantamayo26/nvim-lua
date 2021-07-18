@@ -105,10 +105,10 @@ if O.document_highlight then
     end
 end
 
-function lsp_config.tsserver_on_attach(client, bufnr)
-    lsp_config.common_on_attach(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
-end
+-- function lsp_config.tsserver_on_attach(client, bufnr)
+--     lsp_config.common_on_attach(client, bufnr)
+--     client.resolved_capabilities.document_formatting = false
+-- end
 
 
 require('lv-utils').define_augroups({

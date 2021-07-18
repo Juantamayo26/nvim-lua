@@ -53,8 +53,8 @@ opt.shiftwidth      = 2                         -- the number of spaces inserted
 opt.shortmess:append("c")                       -- don't pass messages to |ins-completion-menu|
 opt.tabstop         = 2                         -- insert 4 spaces for a tab
 opt.cursorline      = O.cursorline              -- highlight the current line
-opt.number          = O.number                  -- set numbered lines
-opt.relativenumber  = O.relative_number         -- set relative numbered lines
+opt.number          = true                      -- set numbered lines
+opt.relativenumber  = true                      -- set relative numbered lines
 opt.signcolumn      = "yes"                     -- always show the sign column, otherwise it would shift the text each time
 opt.wrap            = O.wrap_lines              -- display lines as one long line
 
