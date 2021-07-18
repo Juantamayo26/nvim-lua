@@ -122,4 +122,3 @@ require('lv-utils').define_augroups({
 -- local servers = {"pyright", "tsserver"}
 -- for _, lsp in ipairs(servers) do nvim_lsp[lsp].setup {on_attach = on_attach} end
 return lsp_config
-
