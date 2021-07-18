@@ -32,16 +32,7 @@ return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
     use {"neovim/nvim-lspconfig"}
     use {"glepnir/lspsaga.nvim"}
-    use {"kabouzeid/nvim-lspinstall"}
-    -- Telescope
-    use {"nvim-lua/popup.nvim"}
-    use {"nvim-lua/plenary.nvim"}
-    use {"tjdevries/astronauta.nvim"}
-    use {
-        "nvim-telescope/telescope.nvim",
-        config = [[require('lv-telescope')]],
-        cmd = "Telescope"
-    }
+
     -- Autocomplete
     use {
         "hrsh7th/nvim-compe",
@@ -51,6 +42,7 @@ return require("packer").startup(function(use)
     }
 
 
+    -- Menu
     use {
         "kyazdani42/nvim-tree.lua",
         -- cmd = "NvimTreeToggle",
@@ -62,12 +54,11 @@ return require("packer").startup(function(use)
     -- whichkey
     use {"folke/which-key.nvim"}
 
-    -- Color
-    use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
 
     -- Status Line and Bufferline
     use {"glepnir/galaxyline.nvim"}
 
+    -- buffer
     use {
         "akinsho/nvim-bufferline.lua",
         config = function()
@@ -76,6 +67,9 @@ return require("packer").startup(function(use)
         event = "BufRead"
 
     }
+
+    -- Color
+    use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
 
     -- competitive programming
     use{

@@ -1,10 +1,8 @@
 require('default-config')
-require('settings')
+require('keymappings')
 require('plugins')
 require('lv-utils')
-require('keymappings')
 require('lv-galaxyline')
--- require('lv-treesitter')
 require('lv-which-key')
 require('lsp')
 
