@@ -1,8 +1,8 @@
 local M = {}
 
 M.config = function()
-require'compe'.setup {
-    enabled = O.auto_complete,
+require('compe').setup {
+    enabled = true,
     autocomplete = true,
     debug = false,
     min_length = 1,
@@ -14,21 +14,23 @@ require'compe'.setup {
     max_kind_width = 100,
     max_menu_width = 100,
     documentation = true,
+
     source = {
-      path = {kind = "   (Path)"},
-      buffer = {kind = "   (Buffer)"},
-      calc = {kind = "   (Calc)"},
-      vsnip = {kind = "   (Snippet)"},
-      nvim_lsp = {kind = "   (LSP)"},
-      -- nvim_lua = {kind = "  "},
-      nvim_lua = false,
-      spell = {kind = "   (Spell)"},
-      tags = false,
-      vim_dadbod_completion = true,
-      -- snippets_nvim = {kind = "  "},
-      -- ultisnips = {kind = "  "},
-      treesitter = {kind = "  "},
-      emoji = {kind = " ﲃ  (Emoji)", filetypes={"markdown", "text"}}
+        path = {kind = "   (Path)"},
+        buffer = {kind = "   (Buffer)"},
+        calc = {kind = "   (Calc)"},
+        vsnip = {kind = "   (Snippet)"},
+        nvim_lsp = {kind = "   (LSP)"},
+        -- nvim_lua = {kind = "  "},
+		nvim_lua = false,
+        spell = {kind = "   (Spell)"},
+        tags = false,
+        vim_dadbod_completion = true,
+        -- snippets_nvim = {kind = "  "},
+        -- ultisnips = {kind = "  "},
+        -- treesitter = {kind = "  "},
+        emoji = {kind = " ﲃ  (Emoji)", filetypes={"markdown", "text"}}
+        -- for emoji press : (idk if that in compe tho)
     }
 }
 
@@ -81,6 +83,6 @@ vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", {noremap = true, s
 vim.api.nvim_set_keymap("i", "<C-e>", "compe#close('<C-e>')", {noremap = true, silent = true, expr = true})
 vim.api.nvim_set_keymap("i", "<C-f>", "compe#scroll({ 'delta': +4 })", {noremap = true, silent = true, expr = true})
 vim.api.nvim_set_keymap("i", "<C-d>", "compe#scroll({ 'delta': -4 })", {noremap = true, silent = true, expr = true})
-
 end
+
 return M

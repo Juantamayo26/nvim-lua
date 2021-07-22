@@ -28,52 +28,85 @@ packer.init {
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require("packer").startup(function(use)
-    -- Packer can manage itself as an optional plugin
-    use "wbthomason/packer.nvim"
-    use {"neovim/nvim-lspconfig"}
-    use {"glepnir/lspsaga.nvim"}
+  -- Packer can manage itself
+  use 'wbthomason/packer.nvim'
 
-    -- Autocomplete
-    use {
-        "hrsh7th/nvim-compe",
-        config = function()
-            require("lv-compe").config()
-        end
-    }
+  --lsp
+  use 'neovim/nvim-lspconfig'
+  --lspsaga
+  use {"glepnir/lspsaga.nvim"}
+  use {
+    'kabouzeid/nvim-lspinstall',
+    event = "VimEnter",
+    config = function()
+      local lspinstall = require "lspinstall"
+      lspinstall.setup()
+    end
+  }
+
+  -- Autocomplete
+  use {
+      "hrsh7th/nvim-compe",
+      config = function()
+          require("config.compe").config()
+      end
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}, 
+    config = function()
+      require('config.telescope')
+    end,
+    cmd = "Telescope"
+  }
 
 
-    -- Menu
-    use {
-        "kyazdani42/nvim-tree.lua",
-        -- cmd = "NvimTreeToggle",
-        config = function()
-            require("lv-nvimtree").config()
-        end
-    }
+  -- Status Line and Bufferline
+  use {
+    "glepnir/galaxyline.nvim",
+    config = function()
+      require("config.galaxyline")
+    end
+  }
 
-    -- whichkey
-    use {"folke/which-key.nvim"}
+  -- BufferLine
+  use {
+      "akinsho/nvim-bufferline.lua",
+      config = function()
+          require("config.bufferline").config()
+      end,
+      event = "BufWinEnter",
+  }
 
+  -- Git
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("config.gitsigns").config()
+    end,
+    event = "BufRead",
+  }
 
-    -- Status Line and Bufferline
-    use {"glepnir/galaxyline.nvim"}
+  -- Tree
+  use 'kyazdani42/nvim-web-devicons' --icons
+  use {
+    "kyazdani42/nvim-tree.lua",
+    -- cmd = "NvimTreeToggle",
+    config = function()
+        require("config.nvimtree").config()
+    end
+  }
 
-    -- buffer
-    use {
-        "akinsho/nvim-bufferline.lua",
-        config = function()
-            require("lv-bufferline").config()
-        end,
-        event = "BufRead"
+  -- competitive programming
+  use 'searleser97/cpbooster.vim'
 
-    }
-
-    -- Color
-    use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-
-    -- competitive programming
-    use{
-      'searleser97/cpbooster.vim'
-    }
+  -- whichkey
+  use {
+    "folke/which-key.nvim",
+    config = function()
+        require("config.which-key")
+    end
+  }
 
 end)

@@ -260,4 +260,3 @@ highlight! link CursorIM Cursor
 highlight! link TermCursor Cursor
 highlight! link TermCursorNC Cursor
 highlight Conceal guifg=#5486C0 guibg=NONE guisp=NONE gui=NONE blend=NONE
-
