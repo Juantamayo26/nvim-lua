@@ -27,10 +27,13 @@ vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
 -- Tab switch buffer
 -- vim.api.nvim_set_keymap('n', '<TAB>', ':bnext<CR>', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<S-TAB>', ':bprevious<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<TAB>', ':BufferLineMoveNext<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<S-TAB>', ':BufferLineMovePrev<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-,>', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-.>', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-<>', ':BufferLineMovePrev<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A->>', ':BufferLineMoveNext<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-PageUp>', ':BufferLineCyclePrev<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-PageDown>', ':BufferLineCycleNext<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<A-p>', ':BufferLinePick<CR>', {noremap = true, silent = true})
 
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})

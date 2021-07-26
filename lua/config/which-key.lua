@@ -54,21 +54,24 @@ local opts = {
     nowait = false -- use `nowait` when creating keymaps
 }
 
-vim.api.nvim_set_keymap('n', '<Leader>e',":lua require'config.nvimtree'.toggle_tree()<cr>",{noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>m',":lua require'config.nvimtree'.toggle_tree()<cr>",{noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>b',"<cmd>Telescope buffers<cr>",{noremap = true, silent = true})
 
 local mappings = {
-  ["e"] = "Explorer",
+  ["m"] = "Explorer",
   ["h"] = { '<cmd>let @/=""<CR>', "No Highlight" },
+  ["b"] = "Buffer",
   f = {
     name = "Telescope",
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    o = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
     R = { "<cmd>Telescope registers<cr>", "Registers" },
-    p = {
+    c = {
       "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<cr>",
       "Colorscheme with Preview",
     },
+    b = { "<cmd>Telescope current_buffer_fuzzy_find<cr>", "Load buffer(in file)" },
   },
   g = {
     name = "Git",
@@ -93,7 +96,20 @@ local mappings = {
   },
   l = {
     name = "LSP",
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    r = { "<cmd>lua vim.lsp.buf.references()<cr>", "References" },
+    d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
+    D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration" },
+    i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation" },
+    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Formatting" },
+--    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+--    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+--    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+--    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+--    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+--    buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+--    buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   }
 }
 

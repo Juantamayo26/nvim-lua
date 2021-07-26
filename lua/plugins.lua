@@ -33,8 +33,6 @@ return require("packer").startup(function(use)
 
   --lsp
   use 'neovim/nvim-lspconfig'
-  --lspsaga
-  use {"glepnir/lspsaga.nvim"}
   use {
     'kabouzeid/nvim-lspinstall',
     event = "VimEnter",
@@ -101,6 +99,9 @@ return require("packer").startup(function(use)
   -- competitive programming
   use 'searleser97/cpbooster.vim'
 
+  use {
+    "ray-x/lsp_signature.nvim"
+  }
   -- whichkey
   use {
     "folke/which-key.nvim",
@@ -108,5 +109,6 @@ return require("packer").startup(function(use)
         require("config.which-key")
     end
   }
+
 
 end)

@@ -49,5 +49,4 @@ opt.showtabline     = 2                         -- always show tabs
 opt.titlestring     = "%<%F%=%l/%L - nvim"      -- what the title of the window will be set to
 opt.title           = true                      -- set the title of window to the value of the titlestring
 opt.signcolumn      = "yes"                     -- always show the sign column, otherwise it would shift the text each time
-opt.cmdheight       = 2                         -- more space in the neovim command line for displaying messages
 opt.pumheight       = 10                        -- pop up menu height
