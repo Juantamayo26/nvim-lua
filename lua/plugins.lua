@@ -102,6 +102,10 @@ return require("packer").startup(function(use)
   use {
     "ray-x/lsp_signature.nvim"
   }
+
+  use "jose-elias-alvarez/null-ls.nvim" 
+ -- use "jose-elias-alvarez/nvim-lsp-ts-utils.nvim" 
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
   -- whichkey
   use {
     "folke/which-key.nvim",
