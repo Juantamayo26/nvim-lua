@@ -57,9 +57,20 @@ local opts = {
 vim.api.nvim_set_keymap('n', '<Leader>m',":lua require'config.nvimtree'.toggle_tree()<cr>",{noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>b',"<cmd>Telescope buffers<cr>",{noremap = true, silent = true})
 
+function relative()
+  if vim.g.flag == true then
+    vim.g.flag = false
+    return vim.g.flag 
+  else
+    vim.g.flag = true 
+    return vim.g.flag 
+  end
+end
+
 local mappings = {
   ["m"] = "Explorer",
   ["h"] = { '<cmd>let @/=""<CR>', "No Highlight" },
+  ["q"] = { '<cmd>lua vim.opt.relativenumber = relative()<cr>', "Relative number" },
   ["b"] = "Buffer",
   f = {
     name = "Telescope",
@@ -98,11 +109,15 @@ local mappings = {
     name = "LSP",
     R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     r = { "<cmd>lua vim.lsp.buf.references()<cr>", "References" },
+    F = { "<cmd>TSLspRenameFile<cr>", "Rename file" },
     d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Definition" },
     D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Declaration" },
     i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Implementation" },
+    I = { "<cmd>TSLspImportAll<cr>", "Import All" },
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Actions" },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Formatting" },
+    o = { "<cmd>TSLspOrganize<cr>", "Organize imports" },
+--        vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", opts)
 --    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 --    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
 --    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
