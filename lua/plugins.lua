@@ -32,7 +32,13 @@ return require("packer").startup(function(use)
   use 'wbthomason/packer.nvim'
 
   --lsp
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    requires = { 'kabouzeid/nvim-lspinstall' },
+    config =  function()
+      require("lsp")
+    end
+  }
   use {
     'kabouzeid/nvim-lspinstall',
     event = "VimEnter",

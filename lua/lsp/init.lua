@@ -1,6 +1,24 @@
 require("null-ls").config {}
 require("lspconfig")["null-ls"].setup {}
 
+require'lspinstall'.setup() -- important
+
+local servers = require'lspinstall'.installed_servers()
+for _, server in pairs(servers) do
+  require'lspconfig'[server].setup{}
+end
+require'lspconfig'.clangd.setup{}
+-- require'lspconfig'.clangd.setup {
+--   on_attach = on_attach,
+--   default_config = {
+--     cmd = {
+--         "clangd", "--background-index", "--pch-storage=memory",
+--         "--clang-tidy", "--suggest-missing-includes"
+--     },
+--     filetypes = {"c", "cpp", "objc", "objcpp"},
+--   }
+-- }
+
 require'lspconfig'.tsserver.setup{
   on_attach= function(client, bufnr)
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
