@@ -1,31 +1,17 @@
 require("null-ls").config {}
 require("lspconfig")["null-ls"].setup {}
-
-require'lspinstall'.setup() -- important
+require'lspinstall'.setup() 
 
 local servers = require'lspinstall'.installed_servers()
 for _, server in pairs(servers) do
   require'lspconfig'[server].setup{}
 end
-require'lspconfig'.clangd.setup{}
--- require'lspconfig'.clangd.setup {
---   on_attach = on_attach,
---   default_config = {
---     cmd = {
---         "clangd", "--background-index", "--pch-storage=memory",
---         "--clang-tidy", "--suggest-missing-includes"
---     },
---     filetypes = {"c", "cpp", "objc", "objcpp"},
---   }
--- }
 
 require'lspconfig'.tsserver.setup{
-  on_attach= function(client, bufnr)
+  on_attach = function(client, bufnr)
     filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
 
-    require "lsp_signature".on_attach()
     client.resolved_capabilities.document_formatting = false
-
     local ts_utils = require("nvim-lsp-ts-utils")
 
     -- defaults
@@ -33,7 +19,6 @@ require'lspconfig'.tsserver.setup{
             debug = false,
             disable_commands = false,
             enable_import_on_completion = false,
-
             -- import all
             import_all_timeout = 5000, -- ms
             -- import_all_priorities = {
@@ -67,12 +52,8 @@ require'lspconfig'.tsserver.setup{
         ts_utils.setup_client(client)
   end
 }
--- format on save
--- vim.cmd("command -buffer Formatting lua vim.lsp.buf.formatting()")
---
+
 vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.formatting()")
---
--- vim.cmd("autocmd BufWritePost * lua vim.lsp.buf.formatting()")
 
 require'lspconfig'.clangd.setup {
  on_attach = on_attach,
@@ -168,7 +149,6 @@ local function documentHighlight(client, bufnr)
 end
 
 local lsp_config = {}
-
 
 function lsp_config.common_on_attach(client, bufnr)
     documentHighlight(client, bufnr)

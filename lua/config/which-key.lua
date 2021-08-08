@@ -60,11 +60,11 @@ vim.api.nvim_set_keymap('n', '<Leader>b',"<cmd>Telescope buffers<cr>",{noremap =
 function relative()
   if vim.g.flag == true then
     vim.g.flag = false
-    return vim.g.flag 
   else
     vim.g.flag = true 
-    return vim.g.flag 
   end
+
+  return vim.g.flag 
 end
 
 local mappings = {

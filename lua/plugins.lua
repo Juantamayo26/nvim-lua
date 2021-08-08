@@ -34,19 +34,11 @@ return require("packer").startup(function(use)
   --lsp
   use {
     'neovim/nvim-lspconfig',
-    requires = { 'kabouzeid/nvim-lspinstall' },
     config =  function()
       require("lsp")
     end
   }
-  use {
-    'kabouzeid/nvim-lspinstall',
-    event = "VimEnter",
-    config = function()
-      local lspinstall = require "lspinstall"
-      lspinstall.setup()
-    end
-  }
+  use { 'kabouzeid/nvim-lspinstall' }
 
   -- Autocomplete
   use {
@@ -55,6 +47,7 @@ return require("packer").startup(function(use)
           require("config.compe").config()
       end
   }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}, 
@@ -63,7 +56,6 @@ return require("packer").startup(function(use)
     end,
     cmd = "Telescope"
   }
-
 
   -- Status Line and Bufferline
   use {
@@ -105,9 +97,9 @@ return require("packer").startup(function(use)
   -- competitive programming
   use 'searleser97/cpbooster.vim'
 
-  use {
-    "ray-x/lsp_signature.nvim"
-  }
+  -- use {  -- It doesn't work idn why
+  --   "ray-x/lsp_signature.nvim"
+  -- }
 
   use "jose-elias-alvarez/null-ls.nvim" 
  -- use "jose-elias-alvarez/nvim-lsp-ts-utils.nvim" 
