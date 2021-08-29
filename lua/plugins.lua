@@ -102,13 +102,23 @@ return require("packer").startup(function(use)
   -- }
 
   use "jose-elias-alvarez/null-ls.nvim" 
- -- use "jose-elias-alvarez/nvim-lsp-ts-utils.nvim" 
+
+  use "morhetz/gruvbox"
+
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   -- whichkey
   use {
     "folke/which-key.nvim",
     config = function()
         require("config.which-key")
+    end
+  }
+
+  use { 
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    config = function()
+      require("config.treesitter")
     end
   }
 
