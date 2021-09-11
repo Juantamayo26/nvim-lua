@@ -122,5 +122,13 @@ return require("packer").startup(function(use)
     end
   }
 
+  use {
+    "akinsho/toggleterm.nvim",
+    event = "BufWinEnter",
+    config = function()
+      require("config.terminal")
+    end
+  }
+
 
 end)
