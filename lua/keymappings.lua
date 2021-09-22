@@ -50,5 +50,5 @@ vim.cmd('vnoremap P "0P')
 -- vim.api.nvim_set_keymap('n', '<F5>', ':!g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o %:r<CR>', {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('n', '<F6>', ':!g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o %:r && ./%:r < %:p:h/in<CR>', {noremap = true, silent = true})
 --
-vim.api.nvim_set_keymap('n', '<F5>', ':TermExec cmd="g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o %:r && ./%:r"<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<F6>', ':TermExec cmd="g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o %:r && ./%:r < %:p:h/in"<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<F5>', ':TermExec cmd="g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o a && ./a"<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<F6>', ':TermExec cmd="g++ -std=c++17 % -static -Wall -Wno-unused-result -O2 -o a && ./a < %:p:h/in"<CR>', {noremap = true, silent = true})
