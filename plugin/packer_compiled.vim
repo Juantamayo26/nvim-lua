@@ -47,8 +47,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/juan/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/juan/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/juan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/juan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/juan/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/juantamayo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/juantamayo/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/juantamayo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/juantamayo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/juantamayo/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -74,98 +74,102 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["cpbooster.vim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/cpbooster.vim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/cpbooster.vim"
   },
   ["galaxyline.nvim"] = {
     config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22config.galaxyline\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\20config.gitsigns\frequire\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
+    only_cond = false,
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/opt/gitsigns.nvim"
   },
   gruvbox = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/gruvbox"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/gruvbox"
   },
   ["null-ls.nvim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
   },
   ["nvim-bufferline.lua"] = {
     config = { "\27LJ\2\n@\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\22config.bufferline\frequire\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
+    only_cond = false,
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/opt/nvim-bufferline.lua"
   },
   ["nvim-compe"] = {
     config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\17config.compe\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-compe"
   },
   ["nvim-lsp-ts-utils"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils"
   },
   ["nvim-lspconfig"] = {
     config = { "\27LJ\2\n#\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\blsp\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
   },
   ["nvim-lspinstall"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
     config = { "\27LJ\2\n>\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\vconfig\20config.nvimtree\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22config.treesitter\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/popup.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/popup.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
     commands = { "Telescope" },
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.telescope\frequire\0" },
     loaded = false,
     needs_bufread = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
+    only_cond = false,
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     config = { "\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20config.terminal\frequire\0" },
     loaded = false,
     needs_bufread = false,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/opt/toggleterm.nvim"
+    only_cond = false,
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/opt/toggleterm.nvim"
   },
   ["which-key.nvim"] = {
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21config.which-key\frequire\0" },
     loaded = true,
-    path = "/home/juan/.local/share/nvim/site/pack/packer/start/which-key.nvim"
+    path = "/home/juantamayo/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 
@@ -197,15 +201,15 @@ time([[Config for nvim-treesitter]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args> }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Telescope lua require("packer.load")({'telescope.nvim'}, { cmd = "Telescope", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 vim.cmd [[au BufWinEnter * ++once lua require("packer.load")({'toggleterm.nvim', 'nvim-bufferline.lua'}, { event = "BufWinEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end
