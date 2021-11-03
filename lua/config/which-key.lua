@@ -54,7 +54,7 @@ local opts = {
     nowait = false -- use `nowait` when creating keymaps
 }
 
-vim.api.nvim_set_keymap('n', '<Leader>m',":lua require'config.nvimtree'.toggle_tree()<cr>",{noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Leader>m',"<cmd>NvimTreeToggle<cr>",{noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Leader>b',"<cmd>Telescope buffers<cr>",{noremap = true, silent = true})
 
 function relative()

@@ -85,12 +85,11 @@ return require("packer").startup(function(use)
   }
 
   -- Tree
-  use 'kyazdani42/nvim-web-devicons' --icons
   use {
     "kyazdani42/nvim-tree.lua",
-    -- cmd = "NvimTreeToggle",
-    config = function()
-        require("config.nvimtree").config()
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function() 
+      require("config.nvimtree").config()
     end
   }
 
