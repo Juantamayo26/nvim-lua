@@ -1,35 +1,20 @@
-local execute = vim.api.nvim_command
 local fn = vim.fn
-
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
-                install_path)
-    execute "packadd packer.nvim"
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-local packer_ok, packer = pcall(require, "packer")
-if not packer_ok then return end
-
-packer.init {
-    -- compile_path = vim.fn.stdpath('data')..'/site/pack/loader/start/packer.nvim/plugin/packer_compiled.vim',
-    compile_path = require("packer.util").join_paths(vim.fn.stdpath('config'),
-                                                     'plugin',
-                                                     'packer_compiled.vim'),
-    git = {clone_timeout = 300},
-    display = {
-        open_fn = function()
-            return require("packer.util").float {border = "single"}
-        end
-    }
-}
-
-vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  use "williamboman/nvim-lsp-installer"
 
   --lsp
   use {
@@ -38,15 +23,36 @@ return require("packer").startup(function(use)
       require("lsp")
     end
   }
-  use { 'kabouzeid/nvim-lspinstall' }
 
-  -- Autocomplete
+  -- better text highlighting
   use {
-      "hrsh7th/nvim-compe",
-      config = function()
-          require("config.compe").config()
-      end
+    'nvim-treesitter/nvim-treesitter',
+    config = function() 
+      require('config.treesitter')
+    end,
+    run = ':TSUpdate',
   }
+
+  -- completion engine
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      { 'hrsh7th/cmp-buffer', after = 'nvim-cmp', },
+      { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp', },
+      { 'saadparwaiz1/cmp_luasnip', after = 'LuaSnip', },
+    },
+    config = function() require('config.compe') end,
+  }
+
+  -- snippets
+  use {
+    'L3MON4D3/LuaSnip',
+  }
+ -- lua lsp defaults
+  use {
+    'folke/lua-dev.nvim',
+  }
+
 
   use {
     'nvim-telescope/telescope.nvim',
@@ -55,14 +61,6 @@ return require("packer").startup(function(use)
       require('config.telescope')
     end,
     cmd = "Telescope"
-  }
-
-  -- Status Line and Bufferline
-  use {
-    "glepnir/galaxyline.nvim",
-    config = function()
-      require("config.galaxyline")
-    end
   }
 
   -- BufferLine
@@ -93,18 +91,9 @@ return require("packer").startup(function(use)
     end
   }
 
-  -- competitive programming
-  use 'searleser97/cpbooster.vim'
-
-  -- use {  -- It doesn't work idn why
-  --   "ray-x/lsp_signature.nvim"
-  -- }
-
-  use "jose-elias-alvarez/null-ls.nvim" 
-
+  -- Nice theme
   use "morhetz/gruvbox"
 
-  use "jose-elias-alvarez/nvim-lsp-ts-utils"
   -- whichkey
   use {
     "folke/which-key.nvim",
@@ -112,14 +101,16 @@ return require("packer").startup(function(use)
         require("config.which-key")
     end
   }
-
-  use { 
-    'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {
+      'kyazdani42/nvim-web-devicons'
+    },
     config = function()
-      require("config.treesitter")
-    end
+      require('config.statusline')
+    end,
   }
+
 
   use {
     "akinsho/toggleterm.nvim",
@@ -129,5 +120,8 @@ return require("packer").startup(function(use)
     end
   }
 
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 
 end)

@@ -61,10 +61,10 @@ function relative()
   if vim.g.flag == true then
     vim.g.flag = false
   else
-    vim.g.flag = true 
+    vim.g.flag = true
   end
 
-  return vim.g.flag 
+  return vim.g.flag
 end
 
 local mappings = {
