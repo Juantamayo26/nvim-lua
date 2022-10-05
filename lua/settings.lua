@@ -11,7 +11,7 @@ cmd('filetype plugin on')               -- filetype detection
 cmd('let &titleold="'..TERMINAL..'"')   
 cmd('set inccommand=split')             -- show what you are substituting in real time
 cmd('set iskeyword+=-')                 -- treat dash as a separate word
-cmd("colorscheme gruvbox")
+cmd("colorscheme spacegray")
 
 ---  SETTINGS  ---
 opt.mouse           = "a"                       -- allow the mouse to be used in neovim
