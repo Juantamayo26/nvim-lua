@@ -14,24 +14,38 @@ vim.cmd([[
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
-  use "williamboman/nvim-lsp-installer"
 
-  --lsp
   use {
-    'neovim/nvim-lspconfig',
-    config = function()
-      require("lsp")
-    end
+	  "VonHeikemen/lsp-zero.nvim",
+	  requires = {
+		  -- LSP Support
+		  {'neovim/nvim-lspconfig'},
+		  {'williamboman/mason.nvim'},
+		  {'williamboman/mason-lspconfig.nvim'},
+
+		  -- Autocompletion
+		  {'hrsh7th/nvim-cmp'},
+		  {'hrsh7th/cmp-buffer'},
+		  {'hrsh7th/cmp-path'},
+		  {'saadparwaiz1/cmp_luasnip'},
+		  {'hrsh7th/cmp-nvim-lsp'},
+		  {'hrsh7th/cmp-nvim-lua'},
+
+		  -- Snippets
+		  {'L3MON4D3/LuaSnip'},
+		  {'rafamadriz/friendly-snippets'},
+	  },
+    config = function() require('lsp.init') end,
   }
 
-  -- better text highlighting
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('config.treesitter')
-    end,
-    run = ':TSUpdate',
-  }
+  ---- better text highlighting
+  ----use {
+  ----  'nvim-treesitter/nvim-treesitter',
+  ----  config = function()
+  ----    require('config.treesitter')
+  ----  end,
+  ----  run = ':TSUpdate',
+  ----}
 
   -- completion engine
   use {
@@ -67,7 +81,7 @@ return require("packer").startup(function(use)
   use {
     "akinsho/nvim-bufferline.lua",
     config = function()
-      require("config.bufferline").config()
+      require("config.bufferline")
     end,
     event = "BufWinEnter",
   }
@@ -82,14 +96,14 @@ return require("packer").startup(function(use)
     event = "BufRead",
   }
 
-  -- Tree
-  use {
-    "kyazdani42/nvim-tree.lua",
-    requires = 'kyazdani42/nvim-web-devicons',
-    config = function()
-      require("config.nvimtree").config()
-    end
-  }
+  ---- Tree
+  ----use {
+  ----  "kyazdani42/nvim-tree.lua",
+  ----  requires = 'kyazdani42/nvim-web-devicons',
+  ----  config = function()
+  ----    require("config.nvimtree").config()
+  ----  end
+  ----}
 
   -- Nice theme
   use "morhetz/gruvbox"
@@ -117,6 +131,14 @@ return require("packer").startup(function(use)
     event = "BufWinEnter",
     config = function()
       require("config.terminal")
+    end
+  }
+
+  use {
+    "ThePrimeagen/harpoon",
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("config.harpoon")
     end
   }
 

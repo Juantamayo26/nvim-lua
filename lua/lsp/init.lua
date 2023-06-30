@@ -1,28 +1,46 @@
-require("nvim-lsp-installer").setup({
-  automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
-    }
-  }
+local lsp = require("lsp-zero")
+local Remap = require("keymap")
+local nnoremap = Remap.nnoremap
+local inoremap = Remap.inoremap
+
+lsp.preset("recommended")
+
+lsp.ensure_installed({
+  'tsserver',
+  'eslint',
+  'rust_analyzer',
 })
 
-local servers = { 'rust_analyzer', 'tsserver', 'sumneko_lua', 'clangd', 'pyright' }
-for _, lsp in pairs(servers) do
-  require('lspconfig')[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      -- This will be the default in neovim 0.7+
-      debounce_text_changes = 150,
-    }
-  }
-end
+local cmp = require('cmp')
+local cmp_select = {behavior = cmp.SelectBehavior.Select}
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+})
 
-vim.cmd("nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>")
--- vim.cmd('nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>')
--- vim.cmd('command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()')
-vim.cmd("nnoremap <silent> <C-p> :lua vim.diagnostic.goto_prev({popup_opts = {border = single}})<CR>")
-vim.cmd("nnoremap <silent> <C-n> :lua vim.diagnostic.goto_next({popup_opts = {border = single}})<CR>")
-vim.cmd("autocmd BufWritePre * lua vim.lsp.buf.formatting()")
+lsp.set_preferences({
+  sign_icons = { }
+})
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
+lsp.on_attach(function(client, bufnr)
+  local opts = {buffer = bufnr, remap = false}
+    nnoremap("<leader>ld", function() vim.lsp.buf.definition() end)
+    nnoremap("K", function() vim.lsp.buf.hover() end)
+    nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
+    nnoremap("<leader>vd", function() vim.diagnostic.open_float() end)
+    nnoremap("<C-n>", function() vim.diagnostic.goto_next() end)
+    nnoremap("<C-p>", function() vim.diagnostic.goto_prev() end)
+    nnoremap("<leader>la", function() vim.lsp.buf.code_action() end)
+    nnoremap("<leader>lr", function() vim.lsp.buf.references() end)
+    nnoremap("<leader>lR", function() vim.lsp.buf.rename() end)
+    inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
+end)
+
+lsp.setup()
+
