@@ -4,7 +4,7 @@ local cmd = vim.cmd
 local opt = vim.opt
 local CACHE_PATH = vim.fn.stdpath('cache')
 local TERMINAL = vim.fn.expand('$TERMINAL')
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 
 ---  VIM ONLY COMMANDS  ---
 cmd('filetype plugin on')               -- filetype detection
