@@ -142,6 +142,13 @@ return require("packer").startup(function(use)
     end
   }
 
+  use {
+    'Exafunction/codeium.vim',
+    config = function ()
+      vim.keymap.set('i', '<C-l>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+    end
+  }
+
   if packer_bootstrap then
     require('packer').sync()
   end
