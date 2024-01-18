@@ -4,12 +4,22 @@ local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 
 lsp.preset("recommended")
+require("mason").setup()
+require("mason-lspconfig").setup()
 
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'rust_analyzer',
-})
+require("mason-lspconfig").setup_handlers {
+    -- The first entry (without a key) will be the default handler
+    -- and will be called for each installed server that doesn't have
+    -- a dedicated handler.
+    function (server_name) -- default handler (optional)
+        require("lspconfig")[server_name].setup {}
+    end,
+    -- Next, you can provide a dedicated handler for specific servers.
+    -- For example, a handler override for the `rust_analyzer`:
+    ["rust_analyzer"] = function ()
+        require("rust-tools").setup {}
+    end
+}
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
@@ -22,10 +32,6 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 lsp.set_preferences({
   sign_icons = { }
-})
-
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
 })
 
 lsp.on_attach(function(client, bufnr)
