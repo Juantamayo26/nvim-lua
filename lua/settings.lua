@@ -39,7 +39,7 @@ opt.wrap            = false
 opt.scrolloff       = 8
 opt.hidden          = true
 opt.updatetime      = 50
-opt.shortmess:append("c")                       -- don't pass messages to |ins-completion-menu|
+opt.shortmess:append("I")                       -- don't pass messages to |ins-completion-menu|
 opt.errorbells      = false
 --
 opt.guifont         = "monospace:h17"           -- the font used in graphical neovim applications
