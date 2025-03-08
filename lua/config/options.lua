@@ -21,4 +21,6 @@ opt.smartcase = true
 opt.breakindent = true
 opt.wrap = false
 
+opt.laststatus = 3
+
 vim.cmd([[let g:netrw_bufsettings = "noma nomod nu nobl nowrap ro"]])

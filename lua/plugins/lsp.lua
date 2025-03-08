@@ -11,7 +11,7 @@ local luasnip = "L3MON4D3/LuaSnip"
 return {
   {
     mason_lspconfig,
-    event = "VeryLazy",
+    event = "VimEnter",
     dependencies = {
       mason,
       nvim_lspconfig,
@@ -62,7 +62,7 @@ return {
   },
   {
     cmp_nvim,
-    event = "VeryLazy",
+    event = "InsertEnter",
     dependencies = {
       nvim_lspconfig,
       cmp_lsp,
@@ -70,6 +70,7 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-path",
+      "github/copilot.vim"
     },
     opts = function()
       local lsp_zero = require("lsp-zero")
@@ -134,7 +135,7 @@ return {
   },
   {
     "VonHeikemen/lsp-zero.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     dependencies = {
       mason,
       mason_lspconfig,
