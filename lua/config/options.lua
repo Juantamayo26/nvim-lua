@@ -9,7 +9,7 @@ opt.shiftwidth = 2
 opt.expandtab = true
 
 opt.cursorline = true
-opt.termguicolors = false
+opt.termguicolors = true
 opt.list = true
 
 opt.hlsearch = false
