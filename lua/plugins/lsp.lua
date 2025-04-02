@@ -26,7 +26,7 @@ return {
         callback = function(args)
           vim.keymap.set("n", "<leader>ld", function()
             vim.lsp.buf.definition()
-          end, { buffer = args.buf, desc = "[l]sp code [a]ctions" })
+          end, { buffer = args.buf, desc = "[l]sp code [d]efinitions" })
           vim.keymap.set("n", "<leader>la", function()
             vim.lsp.buf.code_action()
           end, { buffer = args.buf, desc = "[l]sp code [a]ctions" })
@@ -54,17 +54,12 @@ return {
     dependencies = {
       nvim_lspconfig,
     },
+    version = "*",
     opts = function()
       return {
         completion = {
           accept = { auto_brackets = { enabled = true }, },
           documentation = { auto_show = true, auto_show_delay_ms = 500 },
-        },
-        sources = {
-          default = { "lsp", "path", "snippets", "buffer" },
-        },
-        appearance = {
-          nerd_font_variant = 'mono'
         },
         signature = { enabled = true }
       }
