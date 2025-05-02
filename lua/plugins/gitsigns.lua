@@ -22,6 +22,23 @@ return {
       vim.keymap.set("n", "<leader>gd", function()
         gitsigns.diffthis()
       end, { buffer = bufnr, desc = "[g]it [d]iff" })
+      vim.keymap.set("n", "gp", function()
+        local filepath = vim.fn.expand("%:p")
+        local line = vim.api.nvim_win_get_cursor(0)[1]
+
+        local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+        if git_root == "" then
+          vim.notify("Not inside a git repository", vim.log.levels.ERROR)
+          return
+        end
+
+        local rel_path = filepath:gsub(git_root .. "/", "")
+        local commit = vim.fn.systemlist("git rev-parse HEAD")[1]
+
+        local permalink = string.format("https://github.com/blob/%s/%s#L%d", commit, rel_path, line)
+
+        vim.fn.setreg("+", permalink)
+      end, { buffer = bufnr, desc = "[g]it [p]ermalink" })
     end,
   },
 }
