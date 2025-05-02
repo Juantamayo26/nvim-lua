@@ -34,8 +34,20 @@ return {
 
         local rel_path = filepath:gsub(git_root .. "/", "")
         local commit = vim.fn.systemlist("git rev-parse HEAD")[1]
+        local remote = vim.fn.systemlist("git remote get-url origin")[1]
 
-        local permalink = string.format("https://github.com/blob/%s/%s#L%d", commit, rel_path, line)
+        local github_repo_url = remote
+          :gsub("git@github.com:", "https://github.com/")
+          :gsub("%.git$", "")
+          :gsub("^git://github.com/", "https://github.com/")
+          :gsub("^https://github.com/", "https://github.com/") -- handles HTTPS too
+
+        if not github_repo_url:match("^https://github.com/") then
+          vim.notify("Unsupported remote URL: " .. remote, vim.log.levels.ERROR)
+          return
+        end
+
+        local permalink = string.format("%s/blob/%s/%s#L%d", github_repo_url, commit, rel_path, line)
 
         vim.fn.setreg("+", permalink)
       end, { buffer = bufnr, desc = "[g]it [p]ermalink" })
