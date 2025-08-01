@@ -8,20 +8,9 @@ return {
     mason_lspconfig,
     event = "VimEnter",
     dependencies = { mason, nvim_lspconfig },
-    opts = function()
-      local lspconfig = require("lspconfig")
-      local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-      return {
-        ensure_installed = { "bashls", "clangd", "dockerls", "jsonls", "lua_ls", "pyright", "terraformls", "ts_ls" },
-        handlers = {
-          function(server_name)
-            lspconfig[server_name].setup({ capabilities = capabilities })
-          end,
-        },
-      }
-    end,
-    config = function(_, opts)
+    config = function()
+      require("mason").setup()
+      
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           vim.keymap.set("n", "<leader>ld", function()
@@ -45,7 +34,19 @@ return {
         end,
       })
 
-      require("mason-lspconfig").setup(opts)
+      require("mason-lspconfig").setup({
+        ensure_installed = { "bashls", "clangd", "dockerls", "jsonls", "lua_ls", "pyright", "terraformls", "ts_ls" },
+        automatic_enable = false,
+      })
+
+      -- Manual LSP setup since handlers are no longer supported
+      local lspconfig = require("lspconfig")
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
+      
+      local servers = { "bashls", "clangd", "dockerls", "jsonls", "lua_ls", "pyright", "terraformls", "ts_ls" }
+      for _, server in ipairs(servers) do
+        lspconfig[server].setup({ capabilities = capabilities })
+      end
     end,
   },
   {
@@ -55,14 +56,20 @@ return {
       nvim_lspconfig,
     },
     version = "*",
-    opts = function()
-      return {
-        completion = {
-          accept = { auto_brackets = { enabled = true }, },
-          documentation = { auto_show = true, auto_show_delay_ms = 500 },
-        },
-        signature = { enabled = true }
-      }
-    end,
+    opts = {
+      keymap = { preset = 'default' },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      completion = {
+        accept = { auto_brackets = { enabled = true } },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+      },
+      signature = { enabled = true }
+    },
   },
 }

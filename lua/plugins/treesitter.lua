@@ -1,29 +1,31 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs",
-    opts = {
-      ensure_installed = {
-        "cpp",
-        "diff",
-        "json",
-        "lua",
-        "python",
-        "terraform",
-        "typescript",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "c",
+          "cpp",
+          "diff",
+          "json",
+          "lua",
+          "python",
+          "terraform",
+          "typescript",
+          "vim",
+          "vimdoc",
+          "yaml",
+        },
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "VeryLazy",
+    event = { "BufReadPost", "BufNewFile" },
     opts = {
       max_lines = 3,
     },

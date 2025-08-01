@@ -3,12 +3,6 @@ local conform = "stevearc/conform.nvim"
 
 return {
   {
-    mason,
-    config = function()
-      require("mason").setup()
-    end,
-  },
-  {
     conform,
     cmd = { "ConformInfo" },
     opts = {

@@ -16,8 +16,7 @@ return {
         },
         panel = { enabled = false },
         filetypes = {
-          ["*"] = true,
-          cpp = false,
+          ["*"] = true
         },
       })
     end,

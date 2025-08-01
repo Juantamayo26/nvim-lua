@@ -4,7 +4,6 @@ local nvim_dap = "mfussenegger/nvim-dap"
 return {
   {
     nvim_dap,
-    event = "VeryLazy",
     dependencies = { mason },
     keys = function()
       local client = require("dap")
@@ -90,7 +89,6 @@ return {
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
-    event = "VeryLazy",
     dependencies = { mason, nvim_dap },
     opts = {
       ensure_installed = { "js" },
@@ -100,7 +98,6 @@ return {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = { nvim_dap, "nvim-neotest/nvim-nio" },
-    event = "VeryLazy",
     keys = {
       {
         "<leader>duit",
@@ -114,7 +111,6 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
-    event = "VeryLazy",
     dependencies = { nvim_dap, "nvim-treesitter/nvim-treesitter" },
     config = true,
   },

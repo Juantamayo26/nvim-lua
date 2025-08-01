@@ -32,9 +32,15 @@ return {
           return
         end
 
+        local head_ref = vim.fn.systemlist("git symbolic-ref refs/remotes/origin/HEAD")[1]
         local rel_path = filepath:gsub(git_root .. "/", "")
         local commit = vim.fn.systemlist("git rev-parse HEAD")[1]
         local remote = vim.fn.systemlist("git remote get-url origin")[1]
+        local default_branch = head_ref and head_ref:match("refs/remotes/origin/(.+)")
+        if not default_branch then
+          vim.notify("Could not detect default branch", vim.log.levels.ERROR)
+          return
+        end
 
         local github_repo_url = remote
           :gsub("git@github.com:", "https://github.com/")
@@ -47,7 +53,7 @@ return {
           return
         end
 
-        local permalink = string.format("%s/blob/%s/%s#L%d", github_repo_url, commit, rel_path, line)
+        local permalink = string.format("%s/blob/%s/%s#L%d", github_repo_url, default_branch, rel_path, line)
 
         vim.fn.setreg("+", permalink)
       end, { buffer = bufnr, desc = "[g]it [p]ermalink" })

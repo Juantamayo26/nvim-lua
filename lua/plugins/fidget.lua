@@ -1,10 +1,4 @@
 return {
   "j-hui/fidget.nvim",
-  opts = { -- catppuccin integration
-    notification = {
-      window = {
-        winblend = 0,
-      },
-    },
-  },
+  enabled = false, -- Disable fidget due to 'eol_right_align' compatibility issue with Neovim 0.10.2
 }

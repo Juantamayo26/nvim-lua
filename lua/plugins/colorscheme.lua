@@ -4,11 +4,11 @@ return {
   priority = 1000,
   opts = {
     integrations = {
-      fidget = true, -- required
-      gitsigns = true, -- required
-      harpoon = true, -- required
-      mason = true, -- required
-      which_key = true, -- required
+      fidget = true,
+      gitsigns = true,
+      harpoon = true,
+      mason = true,
+      which_key = true,
     },
   },
   config = function(_, opts)
