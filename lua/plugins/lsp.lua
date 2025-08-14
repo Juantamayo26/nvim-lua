@@ -10,7 +10,6 @@ return {
     dependencies = { mason, nvim_lspconfig },
     config = function()
       require("mason").setup()
-      
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           vim.keymap.set("n", "<leader>ld", function()
@@ -42,7 +41,6 @@ return {
       -- Manual LSP setup since handlers are no longer supported
       local lspconfig = require("lspconfig")
       local capabilities = require("blink.cmp").get_lsp_capabilities()
-      
       local servers = { "bashls", "clangd", "dockerls", "jsonls", "lua_ls", "pyright", "terraformls", "ts_ls" }
       for _, server in ipairs(servers) do
         lspconfig[server].setup({ capabilities = capabilities })

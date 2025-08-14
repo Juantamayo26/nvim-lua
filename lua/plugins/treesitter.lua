@@ -11,6 +11,8 @@ return {
           "diff",
           "json",
           "lua",
+          "markdown",
+          "markdown_inline",
           "python",
           "terraform",
           "typescript",
