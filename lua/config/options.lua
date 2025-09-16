@@ -23,4 +23,12 @@ opt.wrap = false
 
 opt.laststatus = 3
 
+opt.autoread = true
+
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+  callback = function()
+    vim.cmd("checktime")
+  end,
+})
+
 vim.cmd([[let g:netrw_bufsettings = "noma nomod nu nobl nowrap ro"]])
